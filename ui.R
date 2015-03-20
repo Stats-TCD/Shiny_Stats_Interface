@@ -3,9 +3,6 @@
 
 shinyUI(
   
-  
-  
-  
   navbarPage("R SHINY",
              inverse= TRUE,
              
@@ -368,8 +365,6 @@ shinyUI(
                                     suggests systematic between-group differences")
                                
                                  
-                                 
-                                 
                         ),
                         tabPanel("Data",
                                  h4("Data:"),
@@ -475,18 +470,29 @@ shinyUI(
                         tabPanel("Regression",
                                  plotOutput("Regression"),
                                  hr(),
-                                 checkboxGroupInput("checkGroup", label = h3("Labels"), 
-                                                    choices = list("Regression Line" = 1, "Prediction Interval" = 2, "Confidence Interval" = 3),
-                                                    selected=FALSE
-                                                    ),
-                                 textOutput("test")
+                                 checkboxInput("reg", label = "Regression Line", value = FALSE),
+                                 p("The Regression line can be thought of as an ‘average line’ through the data – at any given
+                                    diameter, the strength of replicate welds will vary about this line; this is the line
+                                    that (approximately) joins up the means of the strength values for different weld
+                                    diameters."),
+                                 hr(),
+                                 checkboxInput("pre", label = "Prediction Interval", value = FALSE),
+                                 p("The prediction interval represents where we predict with 95% certainty the strength for a single
+                                   spot weld diameter would fall"),
+                                 hr(),
+                                 checkboxInput("con", label = "Confidence Interval", value = FALSE),
+                                 p("The confidence interval represents where we are we are 95% confident that the interval covers the true long-run mean
+                                    at this strength")
+                                 
+                                 
+                                 
                                  
                                  
                                  )
                       )
              ),
              
-             #More content if needed
+             #File Upload tab panel
              tabPanel("File Upload",
                       h4("File Upload"),
                       sidebarLayout(
@@ -507,12 +513,10 @@ shinyUI(
                           h1(textOutput("warning1"))
                           )
                         
-                        
-                      
-                      
                       )
                       
                ),
+             
              #load css theme 
              includeCSS("background.css")             
                 

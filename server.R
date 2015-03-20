@@ -285,38 +285,26 @@ output$Regression <- renderPlot ({
   
     
     #add regression line
-    if (input$checkGroup[]==1){
+    if (input$reg== TRUE){
       abline(model)
     }
     
     #add prediction interval
-    if (input$checkGroup==2){
+    if (input$pre==TRUE){
       lines(Diameter, predict.int[, 2], lty = 2, col =2)
       lines(Diameter, predict.int[, 3], lty = 2, col =2)
     }
     
     #add confidence interval
-    if (input$checkGroup==3){
+    if (input$con==TRUE){
       lines(Diameter, conf.int[, 2], lty = 3, col = 3)
       lines(Diameter, conf.int[, 3], lty = 3, col = 3)
     }
     
-    
-  
-  
-  
-  
-  
-  
-  
   
   
 })
 
-output$test <- renderPrint({
-  input$checkGroup
-  
-})
 
 output$welds <- renderTable ({
   
@@ -355,7 +343,5 @@ output$upload <- renderTable({
   
   read.csv(File$datapath)
 })
-
-  
   
 })
